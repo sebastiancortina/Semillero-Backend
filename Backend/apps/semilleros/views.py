@@ -5,7 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 
-from .serializers import SemilleroSerializer
+from apps.semilleros.serializers import SemilleroSerializer
 from apps.semilleros.models import Semillero
 
 # Create your views here.

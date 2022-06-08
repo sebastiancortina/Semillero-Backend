@@ -1,5 +1,5 @@
 from django.db import models
-from apps.usuarios.models import Usuario
+#from apps.usuarios.models import Usuario
 
 # Create your models here.
 class Semillero(models.Model):
@@ -11,7 +11,6 @@ class Semillero(models.Model):
     tematica = models.CharField('TÉMATICA DE ESTUDIO DEL SEMILLERO', max_length=250)
     justificacion = models.TextField(' JUSTIFICACIÓN DEL SEMILLERO DE INVESTIGACIÓN')
     activo = models.BooleanField('ACTIVO', default=False)
-    id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name="id_usuario_5", null=False, blank=False )
     create_at = models.DateTimeField(auto_now=True)
     update_at = models.DateTimeField(auto_now_add=True)
 
