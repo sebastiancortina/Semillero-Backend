@@ -31,6 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 LOCAL_APPS = [
     "apps.semilleros",
+    "apps.usuarios",
+    "apps.avals",
+    "apps.actividades",
 ]
 
 INSTALLED_APPS = [
