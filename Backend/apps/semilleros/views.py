@@ -30,11 +30,6 @@ class SemillerolistAV(APIView):
 
 
 
-
-
-
-
-
 class SemilleroDetalleAV(APIView):
     def get(self, request, id):
         try: 
