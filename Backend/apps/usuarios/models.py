@@ -22,6 +22,7 @@ class Usuario(models.Model):
     numero_emergencia = models.CharField('NÚMERO DE CONTACTO', max_length=250) #
     activo = models.BooleanField('ACTIVO', default=True)
     id_semillero = models.ForeignKey(Semillero, on_delete=models.CASCADE, related_name="usuarios" )
+    aprobado = models.BooleanField('Aprobacion', default=False)
     #rol_u = models.ForeignKey(Rol, on_delete=models.CASCADE, related_name="rol")
     programa = models.CharField('Programa', max_length=250, null=True, blank=True)
     año_i = models.CharField('AÑO INGRESO', max_length=250,  null=True, blank=True)
@@ -50,7 +51,7 @@ class Idioma(models.Model):
 
 
 class Lider(models.Model):
-    id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name="id_usuario_2" )
+    id_usuario = models.OneToOneField(Usuario, on_delete=models.CASCADE, related_name="lider" )
 
     def __str__(self):
         return str(self.id_usuario)
@@ -67,7 +68,7 @@ class Curso(models.Model):
     institucion = models.CharField('INSTITUCION', max_length=250,  null=True, blank=True)
     t_vinculacion = models.CharField('TIPO DE VINCULACION', max_length=250,  null=True, blank=True)
     año =  models.CharField('AÑO', max_length=250,  null=True, blank=True)
-    id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name="id_usuario_4" )
+    id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name="cursos" )
 
     def __str__(self):
         return self.tematica 

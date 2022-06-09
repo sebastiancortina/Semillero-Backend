@@ -11,14 +11,15 @@ from apps.semilleros.models import Semillero
 # Create your views here.
 
 class SemillerolistAV(APIView):
-
+    
+    # Listar semilleros
     def get(self, request):
-        semilleros = Semillero.objects.all()
+        semilleros = Semillero.objects.filter(activo=True)
         serializer = SemilleroSerializer(semilleros, many=True)
         return Response(serializer.data)
     
     
-    
+    #Crear semillero
     def post(self, request):
         serializer = SemilleroSerializer(data=request.data)
         if serializer.is_valid():
@@ -26,6 +27,13 @@ class SemillerolistAV(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+
+
+
 
 class SemilleroDetalleAV(APIView):
     def get(self, request, id):

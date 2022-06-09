@@ -14,6 +14,5 @@ class Semillero(models.Model):
     create_at = models.DateTimeField(auto_now=True)
     update_at = models.DateTimeField(auto_now_add=True)
 
-
     def __str__(self):
         return self.nombre   
