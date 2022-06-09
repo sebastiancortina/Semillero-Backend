@@ -2,6 +2,13 @@ from django.db import models
 from apps.semilleros.models import Semillero
 
 # Create your models here.
+
+# class Rol(models.Model):
+#     rol = models.CharField('Rol', max_length=250, null=True, blank=True)
+
+#     def __str__(self):
+#         return self.rol 
+
 class Usuario(models.Model):
     ni = models.BigIntegerField(primary_key=True)
     nombre = models.CharField('NOMBRE COMPLETO', max_length=250)
@@ -14,7 +21,19 @@ class Usuario(models.Model):
     n_emergencia = models.CharField('EN CASO DE EMERGENCIA LLAMAR A', max_length=250)
     numero_emergencia = models.CharField('NÚMERO DE CONTACTO', max_length=250) #
     activo = models.BooleanField('ACTIVO', default=True)
-    id_semillero = models.ForeignKey(Semillero, on_delete=models.CASCADE, related_name="usuarioslist" )
+    id_semillero = models.ForeignKey(Semillero, on_delete=models.CASCADE, related_name="usuarios" )
+    #rol_u = models.ForeignKey(Rol, on_delete=models.CASCADE, related_name="rol")
+    programa = models.CharField('Programa', max_length=250, null=True, blank=True)
+    año_i = models.CharField('AÑO INGRESO', max_length=250,  null=True, blank=True)
+    semestre_a = models.CharField('SEMESTRE ACTUAL', max_length=250,  null=True, blank=True)
+    f_grado =  models.CharField('FECHA DE GRADO', max_length=250,  null=True, blank=True)
+    pregrado = models.CharField('PREGRADO', max_length=250, null=True, blank=True)
+    posgrado = models.CharField('POSGRADOS', max_length=250, null=True, blank=True)
+
+
+
+
+
     create_at = models.DateTimeField(auto_now=True)
     update_at = models.DateTimeField(auto_now_add=True)
 
@@ -24,7 +43,7 @@ class Usuario(models.Model):
 class Idioma(models.Model):
     lengua = models.CharField('LENGUA', max_length=250,  null=True, blank=True)
     nivel = models.CharField('NIVEL', max_length=250,  null=True, blank=True)
-    id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name="id_usuario_1" )
+    id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name="idioma_u" )
 
     def __str__(self):
         return self.lengua 
@@ -38,16 +57,10 @@ class Lider(models.Model):
 
 class Rol(models.Model):
     rol = models.CharField('Rol',max_length=250)
-    programa = models.CharField('Programa', max_length=250, null=True, blank=True)
-    año_i = models.CharField('AÑO INGRESO', max_length=250,  null=True, blank=True)
-    semestre_a = models.CharField('SEMESTRE ACTUAL', max_length=250,  null=True, blank=True)
-    f_grado =  models.CharField('FECHA DE GRADO', max_length=250,  null=True, blank=True)
-    pregrado = models.CharField('PREGRADO', max_length=250, null=True, blank=True)
-    posgrado = models.CharField('POSGRADOS', max_length=250, null=True, blank=True)
-    id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name="id_usuario_3")
+    id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name="rol")
 
     def __str__(self):
-        return str( self.id_usuario)  
+        return str(self.id_usuario)  
 
 class Curso(models.Model):
     tematica = models.CharField('TEMATICA', max_length=250,  null=True, blank=True)

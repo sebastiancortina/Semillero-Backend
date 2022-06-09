@@ -1,25 +1,30 @@
 from rest_framework import serializers
 from apps.semilleros.models import Semillero
-from apps.usuarios.models import Usuario
-#from apps.usuarios.serializers import UsuarioSerializer
-#from apps.semilleros.serializers import SemilleroSerializer
+from apps.usuarios.models import *
+
+class IdiomaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Idioma
+        fields = '__all__'
+
+class RolSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Rol
+        fields = '__all__'
 
 class UsuarioSerializer(serializers.ModelSerializer):
-   # usuariolist = SemilleroSerializer(many=True, read_only = True)
+    rol = RolSerializer(many=True, read_only = True)
+    idioma_u = IdiomaSerializer(many=True, read_only = True)
     class Meta:
         model = Usuario
         fields = '__all__'
 
-
 class SemilleroSerializer(serializers.ModelSerializer):
-    usuarioslist = UsuarioSerializer(many=True, read_only = True)
+    usuarios = UsuarioSerializer(many=True, read_only = True)
+
     class Meta:
         model = Semillero
         fields = '__all__'
-
-
-
-
 
         # fields = [
         #     "id",

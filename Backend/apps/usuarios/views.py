@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 
-from apps.usuarios.serializers import UsuarioSerializer
+from api.serializers import UsuarioSerializer
 from apps.usuarios.models import Usuario
 
 # Create your views here.

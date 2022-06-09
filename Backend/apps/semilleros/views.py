@@ -5,7 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 
-from apps.semilleros.serializers import SemilleroSerializer
+from api.serializers import SemilleroSerializer
 from apps.semilleros.models import Semillero
 
 # Create your views here.
@@ -16,6 +16,8 @@ class SemillerolistAV(APIView):
         semilleros = Semillero.objects.all()
         serializer = SemilleroSerializer(semilleros, many=True)
         return Response(serializer.data)
+    
+    
     
     def post(self, request):
         serializer = SemilleroSerializer(data=request.data)
