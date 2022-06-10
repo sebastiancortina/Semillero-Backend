@@ -32,7 +32,7 @@ class RolSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class UsuarioSerializer(serializers.ModelSerializer):
-    aprobado_e = Aval_usuario_Serializer(many=True, read_only = True)
+   # aprobado_e = Aval_usuario_Serializer(many=True, read_only = True)
     rol = RolSerializer(many=True, read_only = True)
     idioma_u = IdiomaSerializer(many=True, read_only = True)
     cursos = CursoSerializer(many=True, read_only = True)
@@ -41,7 +41,7 @@ class UsuarioSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class SemilleroSerializer(serializers.ModelSerializer):
-    aprobado_s = Aval_semillero_Serializer(many=True, read_only = True)
+   # aprobado_s = Aval_semillero_Serializer(many=True, read_only = True)
     usuarios = UsuarioSerializer(many=True, read_only = True)
 
     class Meta:

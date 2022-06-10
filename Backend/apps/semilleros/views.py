@@ -22,13 +22,20 @@ class SemillerolistAV(APIView):
     #Crear semillero
     def post(self, request):
         serializer = SemilleroSerializer(data=request.data)
+        
+        #serializer = SemilleroSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(serializer.data['usuarios'], status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
+# Listar semilleros aprobados
+class SemillerolistAprobado(APIView):
+        def get(self, request):
+            semilleros = Semillero.objects.filter(aprobado=True)
+            serializer = SemilleroSerializer(semilleros, many=True)
+            return Response(serializer.data)
 
 class SemilleroDetalleAV(APIView):
     def get(self, request, id):

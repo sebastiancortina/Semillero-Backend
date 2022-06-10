@@ -10,6 +10,7 @@ class Semillero(models.Model):
     l_investigacion_asociado = models.CharField('LÍNEA Y SUBLÍNEA DE INVESTIGACIÓN ASOCIADOS', max_length=250)
     tematica = models.CharField('TÉMATICA DE ESTUDIO DEL SEMILLERO', max_length=250)
     justificacion = models.TextField(' JUSTIFICACIÓN DEL SEMILLERO DE INVESTIGACIÓN')
+    aprobado = models.BooleanField('Aprobacion', default=False)
     activo = models.BooleanField('ACTIVO', default=False)
     create_at = models.DateTimeField(auto_now=True)
     update_at = models.DateTimeField(auto_now_add=True)
